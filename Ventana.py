@@ -1,6 +1,6 @@
 from tkinter import *
 from Escuderia import *
-color1="black"
+color1="gray20"
 
 class Ventana_inicio(Frame):
 
@@ -59,7 +59,7 @@ class Ventana_inicio(Frame):
         self.__master.iconbitmap("pilot.ico")
         canvas=Canvas(self.__master,bg="white",width=1280,height=800)
         canvas.pack()
-        self.fondopilotos=PhotoImage(file="pilotos.png")
+        self.fondopilotos=PhotoImage(file="fpilotos.png")
         canvas.create_image(0,0,image=self.fondopilotos,anchor=NW)
         self.driver1=PhotoImage(file="valtteri.png")
         canvas.create_image(50,50,image=self.driver1,anchor=NW)
@@ -72,26 +72,26 @@ class Ventana_inicio(Frame):
         self.driver5=PhotoImage(file="george.png")
         canvas.create_image(50,550,image=self.driver5,anchor=NW)
         self.driver6=PhotoImage(file="nico.png")
-        canvas.create_image(550,50,image=self.driver6,anchor=NW)
+        canvas.create_image(650,50,image=self.driver6,anchor=NW)
         self.driver7=PhotoImage(file="pierre.png")
-        canvas.create_image(550,175,image=self.driver7,anchor=NW)
+        canvas.create_image(650,175,image=self.driver7,anchor=NW)
         self.driver8=PhotoImage(file="romain.png")
-        canvas.create_image(550,300,image=self.driver8,anchor=NW)
+        canvas.create_image(650,300,image=self.driver8,anchor=NW)
         self.driver9=PhotoImage(file="sebastian.png")
-        canvas.create_image(550,425,image=self.driver9,anchor=NW)
+        canvas.create_image(650,425,image=self.driver9,anchor=NW)
         self.driver10=PhotoImage(file="sergio.png")
-        canvas.create_image(550,550,image=self.driver10,anchor=NW)
+        canvas.create_image(650,550,image=self.driver10,anchor=NW)
         self.menuvar = Menu(self.__master)
         canvas.create_text(25,50,anchor=NW,text="1",font=("Fixedsys","20","bold"),fill=color1)
         canvas.create_text(25,175,anchor=NW,text="2",font=("Fixedsys","20","bold"),fill=color1)
         canvas.create_text(25,300,anchor=NW,text="3",font=("Fixedsys","20","bold"),fill=color1)
         canvas.create_text(25,425,anchor=NW,text="4",font=("Fixedsys","20","bold"),fill=color1)
         canvas.create_text(25,550,anchor=NW,text="5",font=("Fixedsys","20","bold"),fill=color1)
-        canvas.create_text(525,50,anchor=NW,text="6",font=("Fixedsys","20","bold"),fill=color1)
-        canvas.create_text(525,175,anchor=NW,text="7",font=("Fixedsys","20","bold"),fill=color1)
-        canvas.create_text(525,300,anchor=NW,text="8",font=("Fixedsys","20","bold"),fill=color1)
-        canvas.create_text(525,425,anchor=NW,text="9",font=("Fixedsys","20","bold"),fill=color1)
-        canvas.create_text(510,550,anchor=NW,text="10",font=("Fixedsys","20","bold"),fill=color1)
+        canvas.create_text(625,50,anchor=NW,text="6",font=("Fixedsys","20","bold"),fill=color1)
+        canvas.create_text(625,175,anchor=NW,text="7",font=("Fixedsys","20","bold"),fill=color1)
+        canvas.create_text(625,300,anchor=NW,text="8",font=("Fixedsys","20","bold"),fill=color1)
+        canvas.create_text(625,425,anchor=NW,text="9",font=("Fixedsys","20","bold"),fill=color1)
+        canvas.create_text(610,550,anchor=NW,text="10",font=("Fixedsys","20","bold"),fill=color1)
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Escuderias",command=self.show_escuderias) #Agregar comandos
@@ -129,10 +129,10 @@ class Ventana_inicio(Frame):
         canvas.create_text(50,50,anchor=NW,text="Instituto Tecnologico de Costa Rica",font=("Fixedsys","14","bold"),fill=color1)
         canvas.create_text(50,100,anchor=NW,text="Kenneth Quirós Torres\n2019243813",font=("Fixedsys","14","bold"),fill=color1)
         self.fotoK=PhotoImage(file="Kenneth.gif")
-        canvas.create_image(500,100,image=self.fotoK,anchor=NW)
+        canvas.create_image(650,100,image=self.fotoK,anchor=NW)
         canvas.create_text(50,150,anchor=NW,text="Yonathan Monge Sanabria\n2019308543",font=("Fixedsys","14","bold"),fill=color1)    
         self.fotoY=PhotoImage(file="Yonathan.png")
-        canvas.create_image(800,100,image=self.fotoY,anchor=NW)
+        canvas.create_image(950,100,image=self.fotoY,anchor=NW)
         canvas.create_text(50,200,anchor=NW,text="Ingenieria en Computadores",font=("Fixedsys","14","bold"),fill=color1)
         canvas.create_text(50,250,anchor=NW,text="Taller de Programacion",font=("Fixedsys","14","bold"),fill=color1)
         canvas.create_text(50,300,anchor=NW,text="Grupo5",font=("Fixedsys","14","bold"),fill=color1)
@@ -141,7 +141,7 @@ class Ventana_inicio(Frame):
         canvas.create_text(50,450,anchor=NW,text="Version 1.1",font=("Fixedsys","14","bold"),fill=color1)
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
-        self.optionsmenu.add_command(label="Escuderias") #Agregar comandos
+        self.optionsmenu.add_command(label="Escuderias",command=self.show_escuderias) #Agregar comandos
         self.optionsmenu.add_command(label="Incio",command=self.inicio)
         self.optionsmenu.add_command(label="Salir",command=self.show_escuderias)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
@@ -169,13 +169,13 @@ class Ventana_inicio(Frame):
         canvas.pack()
         
         self.__master.title("Formula E CE TEC")
-        self.fondo=PhotoImage(file="fondofuturista.png")
+        self.fondo=PhotoImage(file="fprincipal.png")
         self.__master.iconbitmap("principal.ico")
         canvas.create_image(0,0,image=self.fondo,anchor=NW)
         self.carrito=PhotoImage(file="carrito.png")
         canvas.create_image(600,50,image=self.carrito,anchor=NW)
         canvas.create_text(50,50,anchor=NW,text="Temporada 2019",font=("Fixedsys","20","bold"),fill=color1)
-        canvas.create_text(50,150,anchor=NW,text="Indice Ganador de Escuderia",font=("Fixedsys","20","bold"),fill=color1)
+        canvas.create_text(50,150,anchor=NW,text="Indice Ganador de Escudería",font=("Fixedsys","20","bold"),fill=color1)
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Escuderias",command=self.show_escuderias) #Agregar comandos
@@ -240,7 +240,7 @@ class Ventana_inicio(Frame):
         self.__master.title("Automóviles")
         self.__master.geometry("1280x800")
         self.__master.iconbitmap("racecar.ico")
-        self.fondoam= PhotoImage(file="fautos.png")
+        self.fondoam= PhotoImage(file="fautos2.png")
         canvas.create_image(0,0,image=self.fondoam,anchor=NW)
 
         self.menuvar = Menu(self.__master)
