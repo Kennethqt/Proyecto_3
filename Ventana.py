@@ -97,26 +97,31 @@ class Ventana_inicio(Frame):
         self.__btnCrearPiloto = Button(self.__master,text="Crear Piloto",command=lambda: self.newPiloto(self.__entryN.get(),self.__entryE.get(),self.__entryNa.get(),
                                                                                                         self.__entryT.get(),self.__entryC.get(),self.__entryD.get(),self.__entryF.get()))
         self.__btnCrearPiloto.place(x=200,y=550)
-        canvas.create_text(700,75,anchor=NW,text="Editar Piloto",font=("Fixedsys","20","bold"),fill="black")
+        canvas.create_text(600,75,anchor=NW,text="Editar Piloto",font=("Fixedsys","20","bold"),fill="black")
 
         
         self.__pilotosselect = StringVar(self.__master)
         self.__pilotosselect.set("Seleccionar piloto")
         self.__select = self.actOptionMenu()
         self.__select.config()
-        self.__select.place(x=800,y=550)
-
+        self.__select.place(x=850,y=130)
+        canvas.create_text(600,180,anchor=NW,text="Nuevo Nombre",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(600,230,anchor=NW,text="Nueva Edad",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(600,280,anchor=NW,text="Nueva Nacionalidad",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(600,330,anchor=NW,text="Nueva Temporada",font=("Fixedsys","17"),fill="black")
         self.__entryEditNombre = Entry(self.__master)
-        self.__entryEditNombre.place(x=600, y=130)
+        self.__entryEditNombre.place(x=850, y=180)
         self.__entryEditEdad = Entry(self.__master)
-        self.__entryEditEdad.place(x=600, y=180)
+        self.__entryEditEdad.place(x=850, y=230)
         self.__entryEditNacionalidad = Entry(self.__master)
-        self.__entryEditNacionalidad.place(x=600, y=230)
+        self.__entryEditNacionalidad.place(x=850, y=280)
         self.__entryEditTemporada = Entry(self.__master)
-        self.__entryEditTemporada.place(x=600, y=280)
+        self.__entryEditTemporada.place(x=850, y=330)
         
-        self.__btnPrueba = Button(self.__master,text="Editar",command=lambda: self.editPiloto(self.__pilotosselect))
-        self.__btnPrueba.place(x=500,y=550)
+        self.__btnEdit = Button(self.__master,text="Editar",command=lambda: self.editPiloto(self.__pilotosselect.get()))
+        self.__btnEdit.place(x=850,y=380)
+        self.__btnGuardar =Button(self.__master,text="Guardar",command=lambda:self.guardaInfo(self.__pilotosselect.get()))
+        self.__btnGuardar.place(x=900,y=380)
     #------------------------------------------------------
     #Actualiza el optionmenu
     def actOptionMenu(self):
@@ -130,15 +135,41 @@ class Ventana_inicio(Frame):
     #-----------------------------------------------------
     #Editar Personaje
     def editPiloto(self,piloto):
-        lista=[]
+        self.__entryEditNombre.delete(0,END)
+        self.__entryEditEdad.delete(0,END)
+        self.__entryEditNacionalidad.delete(0,END)
+        self.__entryEditTemporada.delete(0,END)
+        
         for i in self.__laEscuderia.getPilotos():
-            if i.getNombre() == piloto:
+            if i.getNombrePiloto() == piloto:
                 pilotoSelect = i
                 break
+        
         self.__entryEditNombre.insert(0,pilotoSelect.getNombrePiloto())
         self.__entryEditEdad.insert(0,pilotoSelect.getEdad())
-        self.__entryEditNacionalidad.insert(0,pilotoSelect.getNacionalidad)
-        self.__entryEditTemporada.insert(0,pilotoSelect.getTemporada)
+        self.__entryEditNacionalidad.insert(0,pilotoSelect.getNacionalidad())
+        self.__entryEditTemporada.insert(0,pilotoSelect.getTemporada())
+    #-------------------------------------------------------
+    #GuardaEdit
+    def guardaInfo(self,piloto):
+        for i in self.__laEscuderia.getPilotos():
+            if i.getNombrePiloto() == piloto:
+                pilotoSelect = i
+                break
+        pilotoSelect.setNombre(self.__entryEditNombre.get())
+        pilotoSelect.setEdad(self.__entryEditEdad.get())
+        pilotoSelect.setNacionalidad(self.__entryEditNacionalidad.get())
+        pilotoSelect.setTemporada(self.__entryEditTemporada.get())
+        Esc = self.__laEscuderia
+        Drivers = Esc.getPilotos()
+        Cars = Esc.getAutomoviles()
+        myEscuderia = Escuderia("Alpine","Cartago",["Coca Cola","Ranchitas","JET","Cacique","Bimbo"],Drivers,Cars)
+        write_inicial(myEscuderia)
+        self.__entryEditNombre.delete(0,END)
+        self.__entryEditEdad.delete(0,END)
+        self.__entryEditNacionalidad.delete(0,END)
+        self.__entryEditTemporada.delete(0,END)
+        self.inicio()
         
     #-------------------------------------------------
     #Enseña la tabla de posiciones
@@ -244,30 +275,35 @@ class Ventana_inicio(Frame):
         self.fondo=PhotoImage(file="fprincipal.png")
         self.__master.iconbitmap("principal.ico")
         canvas.create_image(0,0,image=self.fondo,anchor=NW)
-        canvas.create_text(50,50,anchor=NW,text="Temporada 2019",font=("Fixedsys","20","bold"),fill=color1)
         canvas.create_text(50,150,anchor=NW,text="Indice Ganador de Escudería",font=("Fixedsys","20","bold"),fill="black")
-        canvas.create_text(50,50,anchor=NW,text="Temporada 2019",font=("Fixedsys","20","bold"),fill="black")
-        canvas.create_text(50,150,anchor=NW,text="Indice Ganador de Escuderia",font=("Fixedsys","20","bold"),fill="black")
+        self.__entryEditTemporada = Entry(self.__master)
+        self.__entryEditTemporada.place(x=100,y=50)
+        self.__btnEditTemporada = Button(self.__master,text="Editar",command=lambda:self.editTemporada(self.__entryEditTemporada.get()))
+        self.__btnEditTemporada.place(x=150,y=50)
+        self.__temporada = StringVar(self.__entryEditTemporada)
+        
+        canvas.create_text(50,50,anchor=NW,text="Temporada",font=("Fixedsys","20","bold"),fill="black")
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
-        self.optionsmenu.add_command(label="Escuderias",command=self.crear_pilotos_autos) #Agregar comandos
+        self.optionsmenu.add_command(label="Escuderias",command=self.crear_pilotos_autos)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
         self.optionsmenu.add_command(label="Salir")
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
-        self.aboutmenu.add_command(label="Créditos", command = self.show_about) #Agregar comando
+        self.aboutmenu.add_command(label="Créditos", command = self.show_about)
         self.aboutmenu.add_command(label="Como Útilizar")#Agregar comando
         self.menuvar.add_cascade(label="Ayuda",menu=self.aboutmenu)
         self.tablemenu = Menu(self.menuvar,tearoff=0)
-        self.tablemenu.add_command(label="Pilotos",command=self.position_table) #Agrega comando
-        self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)#Agregar comando
+        self.tablemenu.add_command(label="Pilotos",command=self.position_table)
+        self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)
         self.menuvar.add_cascade(label="Tabla de Posiciones",menu=self.tablemenu)
         self.testmenu = Menu(self.menuvar,tearoff=0)
-        self.testmenu.add_command(label="Halo View",command=self.show_testdrive) #Agregar comando
+        self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
         self.__logoEscuderia = PhotoImage(file="Fotos/Escuderia_2.gif")
-        canvas.create_image(1000,150,image=self.__logoEscuderia)
+        canvas.create_image(1050,165,image=self.__logoEscuderia)
+        
         
         return
 
@@ -288,20 +324,20 @@ class Ventana_inicio(Frame):
         self.menuvar = Menu(self.__master)
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
-        self.optionsmenu.add_command(label="Escuderias",command=self.crear_pilotos_autos) #Agregar comandos
+        self.optionsmenu.add_command(label="Escuderias",command=self.crear_pilotos_autos) 
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
         self.optionsmenu.add_command(label="Salir")
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
-        self.aboutmenu.add_command(label="Créditos", command = self.show_about) #Agregar comando
-        self.aboutmenu.add_command(label="Como Útilizar")#Agregar comando
+        self.aboutmenu.add_command(label="Créditos", command = self.show_about) 
+        self.aboutmenu.add_command(label="Como Útilizar")
         self.menuvar.add_cascade(label="Ayuda",menu=self.aboutmenu)
         self.tablemenu = Menu(self.menuvar,tearoff=0)
-        self.tablemenu.add_command(label="Pilotos",command=self.position_table) #Agrega comando
-        self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)#Agregar comando
+        self.tablemenu.add_command(label="Pilotos",command=self.position_table)
+        self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)
         self.menuvar.add_cascade(label="Tabla de Posiciones",menu=self.tablemenu)
         self.testmenu = Menu(self.menuvar,tearoff=0)
-        self.testmenu.add_command(label="Halo View",command=self.show_testdrive) #Agregar comando
+        self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
     #Funcion para crear menu que mostrara los carros 
