@@ -44,6 +44,3 @@ class Escuderia:
     def addAutomovil(self,newAutomovil):
         self.__automoviles.append(newAutomovil)
 
-
-
-                        

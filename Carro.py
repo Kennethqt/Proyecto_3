@@ -5,6 +5,7 @@ class Carro:
         self.__marca = marca
         self.__modelo = modelo
         self.__pais = pais
+        
         #self.__foto = foto
         self.__temporada = temporada
         self.__num_baterias = num_baterias
