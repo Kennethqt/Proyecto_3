@@ -1,5 +1,5 @@
 import pickle
-import Piloto as Piloto
+from Piloto import *
 from Escuderia import *
 # Store data (serialize)
 def write_inicial(args):
