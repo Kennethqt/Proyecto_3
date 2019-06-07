@@ -10,24 +10,38 @@ class Ventana_inicio(Frame):
 
     def __init__(self,master):
         self.__master = master
-        self.__escuderias={}       
+        self.__laEscuderia = read()
         self.inicio()
         return
-    
-            
+    #--------------------------------------------------
+    #Print Escuderia
+    def printInfo(self):
+        Esc = self.__laEscuderia
+        Name = Esc.getNombre()
+        Location = Esc.getUbicacion()
+        Sponsors = Esc.getPatrocinadores()
+        Drivers = Esc.getPilotos()
+        Cars = Esc.getAutomoviles()           
     #--------------------------------------------------
     #Crear piloto
-    def newPiloto(self,nombre,edad,nacionalidad,temporada,can_competencias,destacadas,fallidas,descalificaciones):
-        newPiloto=Piloto(nombre,edad,nacionalidad,temporada,can_competencias,destacadas,fallidas,descalificaciones)
-        
-    #--------------------------------------------------
-
+    def newPiloto(self,nombre,edad,nacionalidad,temporada,can_competencias,destacadas,fallidas):
+        newPiloto=Piloto(nombre,edad,nacionalidad,temporada,can_competencias,destacadas,fallidas)
+        self.__laEscuderia.addPiloto(newPiloto)
+        Esc = self.__laEscuderia
+        Drivers = Esc.getPilotos()
+        Cars = Esc.getAutomoviles()
+        myEscuderia = Escuderia("Alpine","Cartago",["Coca Cola","Ranchitas","JET","Cacique","Bimbo"],Drivers,Cars)
+        write_inicial(myEscuderia)
+        self.__entryN.delete(0,END)
+        self.__entryE.delete(0,END)
+        self.__entryNa.delete(0,END)
+        self.__entryT.delete(0,END)
+        self.__entryC.delete(0,END)
+        self.__entryD.delete(0,END)
+        self.__entryF.delete(0,END)
     #---------------------------------------------------
-        
-
-    
     #Crea las escuderias
-    def show_escuderias(self):
+    def crear_pilotos_autos(self):
         for i in self.__master.winfo_children():
             i.destroy()
         Frame.__init__(self,self.__master)
@@ -41,7 +55,7 @@ class Ventana_inicio(Frame):
         canvas.create_image(0,0,image=self.fondopilotos,anchor=NW)
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
-        self.optionsmenu.add_command(label="Escuderias",command=self.show_escuderias) #Agregar comandos
+        self.optionsmenu.add_command(label="Escuderias",command=self.crear_pilotos_autos) #Agregar comandos
         self.optionsmenu.add_command(label="Incio",command=self.inicio)
         self.optionsmenu.add_command(label="Salir")
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
@@ -70,60 +84,36 @@ class Ventana_inicio(Frame):
         self.testmenu.add_command(label="Halo View") #Agregar comando
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
-        canvas.create_text(100,75,anchor=NW,text="Crea tu Escuderia",font=("Fixedsys","20","bold"),fill="grey92")
-        canvas.create_text(100,130,anchor=NW,text="Nombre",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(100,200,anchor=NW,text="Ubicación",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(100,270,anchor=NW,text="Patrocinador",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(100,340,anchor=NW,text="Piloto",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(100,410,anchor=NW,text="Automovil",font=("Fixedsys","17"),fill="grey92")
-        self.__entryNombre=Entry(self.__master)
-        self.__entryNombre.place(x=220,y=130)
-        self.__entryUbicacion=Entry(self.__master)
-        self.__entryUbicacion.place(x=220,y=200)
-        self.__entryPatrocinadores=Entry(self.__master)
-        self.__entryPatrocinadores.place(x=220,y=270)
-        self.__entryPiloto=Entry(self.__master)
-        self.__entryPiloto.place(x=220,y=340)
-        self.__entryAutomovil=Entry(self.__master)
-        self.__entryAutomovil.place(x=220,y=410)
-        self.__btnGuardar = Button(self.__master,text="Guardar",command=lambda: self.newEscuderia(self.__entryNombre.get(),
-                                                                                self.__entryUbicacion.get(),self.__entryPatrocinadores.get(),self.__entryPiloto.get(),self.__entryAutomovil.get()))
-        self.__btnGuardar.place(x=220,y=480)
-        canvas.create_text(600,75,anchor=NW,text="Crear Piloto",font=("Fixedsys","20","bold"),fill="grey92")
-        canvas.create_text(600,130,anchor=NW,text="Nombre",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,180,anchor=NW,text="Edad",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,230,anchor=NW,text="Nacionalidad",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,280,anchor=NW,text="Temporada",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,330,anchor=NW,text="Competencias",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,380,anchor=NW,text="Destacadas",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,430,anchor=NW,text="Fallidas",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,480,anchor=NW,text="Victorias",font=("Fixedsys","17"),fill="grey92")
-        canvas.create_text(600,530,anchor=NW,text="Elegir Escuderia",font=("Fixedsys","17"),fill="grey92")
+        canvas.create_text(150,75,anchor=NW,text="Crear Piloto",font=("Fixedsys","20","bold"),fill="grey92")
+        canvas.create_text(150,130,anchor=NW,text="Nombre",font=("Fixedsys","17"),fill="grey92")
+        canvas.create_text(150,180,anchor=NW,text="Edad",font=("Fixedsys","17"),fill="grey92")
+        canvas.create_text(150,230,anchor=NW,text="Nacionalidad",font=("Fixedsys","17"),fill="grey92")
+        canvas.create_text(150,280,anchor=NW,text="Temporada",font=("Fixedsys","17"),fill="grey92")
+        canvas.create_text(150,330,anchor=NW,text="Competencias",font=("Fixedsys","17"),fill="grey92")
+        canvas.create_text(150,380,anchor=NW,text="Destacadas",font=("Fixedsys","17"),fill="grey92")
+        canvas.create_text(150,430,anchor=NW,text="Fallidas",font=("Fixedsys","17"),fill="grey92")
         self.__entryN=Entry(self.__master)
-        self.__entryN.place(x=800,y=130)
+        self.__entryN.place(x=300,y=130)
         self.__entryE=Entry(self.__master)
-        self.__entryE.place(x=800,y=180)
+        self.__entryE.place(x=300,y=180)
         self.__entryNa=Entry(self.__master)
-        self.__entryNa.place(x=800,y=230)
+        self.__entryNa.place(x=300,y=230)
         self.__entryT=Entry(self.__master)
-        self.__entryT.place(x=800,y=280)
+        self.__entryT.place(x=300,y=280)
         self.__entryC=Entry(self.__master)
-        self.__entryC.place(x=800,y=330)
+        self.__entryC.place(x=300,y=330)
         self.__entryD=Entry(self.__master)
-        self.__entryD.place(x=800,y=380)
+        self.__entryD.place(x=300,y=380)
         self.__entryF=Entry(self.__master)
-        self.__entryF.place(x=800,y=430)
-        self.__entryV=Entry(self.__master)
-        self.__entryV.place(x=800,y=480)
+        self.__entryF.place(x=300,y=430)
+        self.__btnCrearPiloto = Button(self.__master,text="Crear Piloto",command=lambda: self.newPiloto(self.__entryN.get(),self.__entryE.get(),self.__entryNa.get(),
+                                                                                                        self.__entryT.get(),self.__entryC.get(),self.__entryD.get(),self.__entryF.get()))
+        self.__btnCrearPiloto.place(x=200,y=550)
+
         
-        self.__var = StringVar(self.__master)
-        self.__selectEscuderia = self.recorrerLista()
-        self.__var.set("Seleccione Escuderia")
-        self.__dropdown = OptionMenu(self.__master,self.__var,self.__selectEscuderia)
-        self.__dropdown.place(x= 800,y=530)
-        self.__btnCrearPiloto = Button(self.__master,text="Crear Piloto",command=lambda: self.newPiloto(self.__entryN.get(),self.__entryE.get(),self.__entryNa.get(),self.__entryT.get(),self.__entryC.get(),
-                                                                                                    self.__entryD.get(),self.__entryF.get(),self.__entryV.get()))
-        self.__btnCrearPiloto.place(x=800,y=690)
+    #-------------------------------------------------
+    #
+    #-------------------------------------------------
     #Enseña la tabla de posiciones
     def position_table(self):
         for i in self.__master.winfo_children():
@@ -195,7 +185,7 @@ class Ventana_inicio(Frame):
         canvas.create_text(510,550,anchor=NW,text="10",font=("Fixedsys","20","bold"),fill="grey92")
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
-        self.optionsmenu.add_command(label="Escuderias",command=self.show_escuderias) #Agregar comandos
+        self.optionsmenu.add_command(label="Escuderias",command=self.crear_pilotos_autos) #Agregar comandos
         self.optionsmenu.add_command(label="Incio",command=self.inicio)
         self.optionsmenu.add_command(label="Salir")
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
@@ -264,7 +254,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Escuderias") #Agregar comandos
         self.optionsmenu.add_command(label="Incio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir",command=self.show_escuderias)
+        self.optionsmenu.add_command(label="Salir",command=self.crear_pilotos_autos)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about) #Agregar comando
@@ -309,7 +299,7 @@ class Ventana_inicio(Frame):
         canvas.create_text(50,150,anchor=NW,text="Indice Ganador de Escuderia",font=("Fixedsys","20","bold"),fill="grey92")
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
-        self.optionsmenu.add_command(label="Escuderias",command=self.show_escuderias) #Agregar comandos
+        self.optionsmenu.add_command(label="Escuderias",command=self.crear_pilotos_autos) #Agregar comandos
         self.optionsmenu.add_command(label="Incio",command=self.inicio)
         self.optionsmenu.add_command(label="Salir")
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
@@ -403,6 +393,5 @@ class Ventana_inicio(Frame):
 
 root= Tk()
 root.geometry("1280x800")
-
 iniciar = Ventana_inicio(root)
 root.mainloop()
