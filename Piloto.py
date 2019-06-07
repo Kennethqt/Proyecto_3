@@ -1,4 +1,5 @@
-class Pilotos:
+
+class Piloto:
 
     def __init__(self,nombre,edad,nacionalidad,temporada,competencias,destacadas,
                  fallidas,victorias):
@@ -19,3 +20,16 @@ class Pilotos:
     def indice_ganador_escuderia(self,v,t):
         ige=v/t
         return ige
+
+    def toDiccionario(self):
+         dic = {}
+         dic["nombre"] = self.__nombre
+         dic["edad"] = self.__edad
+         dic["nacionalidad"] = self.__nacionalidad
+         dic["temporada"] = self.__temporada
+         dic["competencias"] = self.__competencias
+         dic["destacadas"] = self.__destacadas
+         dic["fallidas"] = self.__fallidas
+         dic["victorias"] = self.__victorias
+         return dic
+

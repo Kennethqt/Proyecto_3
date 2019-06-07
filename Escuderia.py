@@ -1,6 +1,10 @@
+
+from Carro import *
+from Piloto import *
+
 class Escuderia:
         #falta logo
-    def __init__(self,nombre,ubicacion,patrocinadores,lista_pilotos,automoviles,escuderias):
+    def __init__(self,nombre,ubicacion,patrocinadores,lista_pilotos,automoviles):
         self.__nombre = nombre
         #self.__logo = logo
         self.__ubicacion = ubicacion
@@ -15,6 +19,30 @@ class Escuderia:
         for escuderia in self.__escuderias:
             salidaescuderias+=escuderia
         return salidaescuderias
+    def toDiccionario(self):
+        dic = {}
+        dic["nombre"] = self.__nombre
+        dic["ubicacion"] = self.__ubicacion
+        dic["patrocinadores"]=self.__patrocinadores
+
+        lista_pilotos = []
+
+        for piloto in self.__pilotos:
+
+            lista_pilotos.append(piloto.toDiccionario())
+        
+        dic["lista_pilotos"] = lista_pilotos
+
+
+        automoviles = []
+
+        for automovil in self.__automoviles:
+            automoviles.append(automovil.toDiccionario())
+
+        dic["automoviles"] = automoviles
+
+        return dic
+        
     def addPatrocinador(self,newPatrocinador):
         self.__patrocinadores.append(newPatrocinador)
     def getPatrocinadores(self):
@@ -49,8 +77,5 @@ class Escuderia:
         self.__pilotos.append(newPiloto)
     def addAutomovil(self,newAutomovil):
         self.__automoviles.append(newAutomovil)
-primera_escuderia = Escuderia("Ferrari","Costa Rica",["Red Bull"],[],[],[])
-primera_escuderia.addPatrocinador("Numar")
-primera_escuderia.addPiloto("Kenneth") #piloton es una instancia de Pilotos
-#primera_escuderia.addCarro("Accent Blue") # carron es una instancia de Automoviles
-
+        
+ 
