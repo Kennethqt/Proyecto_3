@@ -215,10 +215,8 @@ class Ventana_inicio(Frame):
         canvas.pack()
         
         self.__master.title("Formula E CE TEC")
-        self.fondo=PhotoImage(file="fondofuturista.png")
+        self.fondo=PhotoImage(file="Fotos/fondofuturista.png")
         canvas.create_image(0,0,image=self.fondo,anchor=NW)
-        self.carrito=PhotoImage(file="carrito.png")
-        canvas.create_image(600,50,image=self.carrito,anchor=NW)
         canvas.create_text(50,50,anchor=NW,text="Temporada 2019",font=("Fixedsys","20","bold"),fill="grey92")
         canvas.create_text(50,150,anchor=NW,text="Indice Ganador de Escuderia",font=("Fixedsys","20","bold"),fill="grey92")
         self.menuvar = Menu(self.__master)
@@ -239,6 +237,9 @@ class Ventana_inicio(Frame):
         self.testmenu.add_command(label="Halo View") #Agregar comando
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
+        self.__logoEscuderia = PhotoImage(file="Fotos/Escuderia_2.gif")
+        canvas.create_image(1000,150,image=self.__logoEscuderia)
+        
         return
 
 root= Tk()

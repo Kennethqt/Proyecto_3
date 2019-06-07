@@ -45,6 +45,5 @@ class Escuderia:
         self.__automoviles.append(newAutomovil)
 
 
-#primera_escuderia.addPiloto("Kenneth") #piloton es una instancia de Pilotos
-#primera_escuderia.addCarro("Accent Blue") # carron es una instancia de Automoviles
+
                         
