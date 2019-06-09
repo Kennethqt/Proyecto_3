@@ -501,6 +501,14 @@ class Ventana_inicio(Frame):
         Frame.__init__(self,self.__master,background="black")
 
         #---------------------------------------------------
+        Esc = self.__laEscuderia
+        Name = Esc.getNombre()
+        Icon = Esc.getLogo()
+        Location = Esc.getUbicacion()
+        Sponsorstring =Esc.getPatrocinadores()
+        Sponsors = Esc.getPatrocinadoresLista()
+        Drivers = Esc.getPilotos()
+        Cars = Esc.getAutomoviles()
         canvas=Canvas(self.__master,bg="white",width=1280,height=800)
         canvas.pack()
         logo = self.__laEscuderia.getLogo()
@@ -553,6 +561,12 @@ class Ventana_inicio(Frame):
         self.__autoestado = estado
         canvas.create_text(450,250,anchor=NW,text="Estado del Automovil",font=("Fixedsys","20"),fill="black")
         canvas.create_text(580,300,anchor=NW,text=self.__autoestado,font=("Fixedsys","17"),fill="black")
+        canvas.create_text(100,150,anchor=NW,text="Nombre",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(200,150,anchor=NW,text=Name,font=("system","17"),fill="red")
+        canvas.create_text(100,200,anchor=NW,text="Ubicación",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(200,200,anchor=NW,text=Location,font=("system","17"),fill="red")
+        canvas.create_text(100,250,anchor=NW,text="Patrocinadores",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(200,250,anchor=NW,text=Sponsorstring,font=("system","17"),fill="red")
         canvas.create_rectangle(530, 290, 725, 345)
         self.__carroselect = StringVar(self.__master)
         self.__carroselect.set("Seleccionar Carro")

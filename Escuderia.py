@@ -16,7 +16,7 @@ class Escuderia:
     def getPatrocinadores(self):
         stringsalida=""
         for patrocinador in self.__patrocinadores:
-            stringsalida+=" "+patrocinador
+            stringsalida+=" "+patrocinador+"\n"
         return stringsalida
     def getPatrocinadoresLista(self):
         return self.__patrocinadores
