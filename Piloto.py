@@ -19,6 +19,12 @@ class Piloto:
     def indice_ganador_escuderia(self,destacadas,competencias):
         ige=destacadas/competencias
         return ige
+    def getDestacadas(self):
+        return self.__destacadas
+    def getCompetencias(self):
+        return self.__competencias
+    def getFallidas(self):
+        return self.__fallidas
     def getNombrePiloto(self):
         return self.__nombre
     def getEdad(self):
