@@ -448,7 +448,7 @@ class Ventana_inicio(Frame):
         Frame.__init__(self,self.__master,background="black")
         self.__master.title("About")
         self.__master.geometry("1280x800")
-        self.__master.iconbitmap("credits.ico")
+        self.__master.iconbitmap("iconos/credits.ico")
         canvas=Canvas(self.__master,bg="white",width=1280,height=800)
         canvas.pack()
         self.fondo=PhotoImage(file="Fotos/Fondo.gif")
@@ -520,7 +520,7 @@ class Ventana_inicio(Frame):
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about)
-        self.aboutmenu.add_command(label="Como Útilizar")
+        self.aboutmenu.add_command(label="Como Útilizar",command=self.show_helpwindow)
         self.menuvar.add_cascade(label="Ayuda",menu=self.aboutmenu)
         self.tablemenu = Menu(self.menuvar,tearoff=0)
         self.tablemenu.add_command(label="Pilotos",command=self.position_table)
@@ -688,8 +688,8 @@ class Ventana_inicio(Frame):
         Frame.__init__(self,self.__master,background="black")
         self.__master.title("Test Drive")
         self.__master.geometry("1280x800")
-        self.__master.iconbitmap("engranaje.ico")
-        self.informacion= PhotoImage(file="interior.png")
+        self.__master.iconbitmap("iconos/engranaje.ico")
+        self.informacion= PhotoImage(file="Fondos/interior.png")
         canvas.create_image(0,0,image=self.informacion,anchor=NW)
         self.menuvar = Menu(self.__master)
         self.menuvar = Menu(self.__master)
@@ -722,8 +722,8 @@ class Ventana_inicio(Frame):
         Frame.__init__(self,self.__master,background="black")
         self.__master.title("Automóviles")
         self.__master.geometry("1280x800")
-        self.__master.iconbitmap("racecar.ico")
-        self.fondoam= PhotoImage(file="fautos2.png")
+        self.__master.iconbitmap("iconos/racecar.ico")
+        self.fondoam= PhotoImage(file="Fondos/fautos2.png")
         canvas.create_image(0,0,image=self.fondoam,anchor=NW)
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
@@ -758,7 +758,43 @@ class Ventana_inicio(Frame):
             sumaF = sumaF + int(fallidas)
         self.__rep = round(sumaD/(sumaC-sumaF),1)
         print(self.__rep)
-
+#Funcion para crear ventana que despliega la información de como utilizar la interfaz
+    def show_helpwindow(self):
+        for i in self.__master.winfo_children():
+            i.destroy()
+        
+        canvas=Canvas(self.__master,bg="white",width=1280,height=800)
+        canvas.pack()
+        canvas.create_text(200,150,anchor=NW,text="En la parte de arriba encontrará una barra con diferentes\nmenus de las cuales"
+                           " dependiendo al lugar que quiera ingresar\nusted debe clickar, ejemplo, en el apartado de 'opciones'\n"
+                           "estarán tres botones, el primero 'Escuderías' lo enviará a\nuna ventana en el que usted puede editar y crear pilotos.\n"
+                           "En la opción de 'Inicio' lo retornará almenu principal y el\nde 'Salir' cerrará la interfaz.\n\nEn la opción de 'Tabla de posiciones'",font=("Fixedsys","20","bold"),fill="black")
+        Frame.__init__(self,self.__master,background="black")
+        self.__master.title("¿Cómo se utiliza?")
+        self.__master.geometry("1280x800")
+        self.__master.iconbitmap("iconos/question.ico")
+        
+            
+        self.menuvar = Menu(self.__master)
+        self.menuvar = Menu(self.__master)
+        self.optionsmenu = Menu(self.menuvar,tearoff=0)
+        self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
+        self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
+        self.optionsmenu.add_command(label="Inicio",command=self.inicio)
+        self.optionsmenu.add_command(label="Salir")
+        self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
+        self.aboutmenu = Menu(self.menuvar,tearoff=0)
+        self.aboutmenu.add_command(label="Créditos", command = self.show_about) #Agregar comando
+        self.aboutmenu.add_command(label="Como Útilizar")#Agregar comando
+        self.menuvar.add_cascade(label="Ayuda",menu=self.aboutmenu)
+        self.tablemenu = Menu(self.menuvar,tearoff=0)
+        self.tablemenu.add_command(label="Pilotos",command=self.position_table) #Agrega comando
+        self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)#Agregar comando
+        self.menuvar.add_cascade(label="Tabla de Posiciones",menu=self.tablemenu)
+        self.testmenu = Menu(self.menuvar,tearoff=0)
+        self.testmenu.add_command(label="Halo View",command=self.show_testdrive) #Agregar comando
+        self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
+        root.config(menu=self.menuvar)
 #Datos de la ventana
 root= Tk()
 root.geometry("1280x800")
