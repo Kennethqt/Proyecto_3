@@ -1,12 +1,11 @@
 class Carro:
 
     def __init__(self,marca,modelo,pais,temporada,num_baterias,can_pilas,
-                 estado,consumo,sensores,peso,eficiencia):
+                 estado,consumo,sensores,peso,eficiencia,foto):
         self.__marca = marca
         self.__modelo = modelo
         self.__pais = pais
-        
-        #self.__foto = foto
+        self.__foto = foto
         self.__temporada = temporada
         self.__num_baterias = num_baterias
         self.__can_pilas = can_pilas
@@ -63,3 +62,7 @@ class Carro:
         return self.__eficiencia
     def setEficiencia(self,newEficiencia):
         self.__eficiencia = newEficiencia
+    def setFoto(self,newFoto):
+        self.__foto = newFoto
+    def getFoto(self):
+        return self.__foto

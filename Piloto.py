@@ -2,7 +2,7 @@
 class Piloto:
 
     def __init__(self,nombre,edad,nacionalidad,temporada,competencias,destacadas,
-                 fallidas):
+                 fallidas,foto):
         self.__nombre = nombre
         self.__edad = edad
         self.__nacionalidad = nacionalidad
@@ -10,14 +10,16 @@ class Piloto:
         self.__competencias = competencias
         self.__destacadas = destacadas
         self.__fallidas = fallidas
-    def rendimiento_global(self,destacadas,competencias,fallidas):
-        rgp=(destacadas)*100/(competencias-fallidas)
-        return rgp
-    def rendimiento_especifico(self,destacadas,competencias,fallidas):
-        rep=destacadas*100/(destacadas-fallidas)
-        return rep
-    def indice_ganador_escuderia(self,destacadas,competencias):
-        ige=destacadas/competencias
+        self.__foto = foto
+    def rendimiento_global(self):
+        rgp=int(self.__destacadas)*100/(int(self.__competencias)-int(self.__fallidas))
+        
+        return round(rgp,2)
+    def rendimiento_especifico(self):
+        rep=int(self.__destacadas*100)/(int(self.__competencias)-int(self.__fallidas))
+        return round(rep,2)
+    def indice_ganador_escuderia(self):
+        ige=round(int(self.__destacadas)/int(self.__competencias),1)
         return ige
     def getDestacadas(self):
         return self.__destacadas
@@ -47,4 +49,5 @@ class Piloto:
         return self.__destacadas
     def getFallidas(self):
         return self.__fallidas
-        
+    def getFoto(self):
+        return self.__foto
