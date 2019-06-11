@@ -2,6 +2,8 @@ from tkinter import *
 from Escuderia import *
 from tkinter.filedialog import askopenfilename
 color1="gray20"
+colorfondo="gray10"
+colorletra="white"
 from Carro import *
 from Piloto import *
 from Pickle import *
@@ -49,6 +51,8 @@ class Ventana_inicio(Frame):
     #----------------------------------------------------
     #Crea los carros
     def crear_carros(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame
         for i in self.__master.winfo_children():
             i.destroy()
             
@@ -60,7 +64,8 @@ class Ventana_inicio(Frame):
         self.__master.iconbitmap("iconos/racecar.ico")
         self.fondoam= PhotoImage(file="Fondos/fautos1.png")
         canvas.create_image(0,0,image=self.fondoam,anchor=NW)
-        self.menuvar = Menu(self.__master)
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
@@ -81,18 +86,22 @@ class Ventana_inicio(Frame):
         self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
         canvas.create_text(150,75,anchor=NW,text="Crear Automovil",font=("Fixedsys","20"),fill="black")       
-        canvas.create_text(150,130,anchor=NW,text="Marca",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,180,anchor=NW,text="Modelo",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,230,anchor=NW,text="Pais",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,280,anchor=NW,text="Temporada",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,330,anchor=NW,text="Baterias",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,380,anchor=NW,text="Pilas",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,430,anchor=NW,text="Estado",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,480,anchor=NW,text="Consumo",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,530,anchor=NW,text="Sensores",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(150,130,anchor=NW,text="Marca",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,180,anchor=NW,text="Modelo",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,230,anchor=NW,text="Pais",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,280,anchor=NW,text="Temporada",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,330,anchor=NW,text="Baterias",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,380,anchor=NW,text="Pilas",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,430,anchor=NW,text="Estado",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,480,anchor=NW,text="Consumo",font=("Fixedsys","17"),fill="red")
+        canvas.create_text(150,530,anchor=NW,text="Sensores",font=("Fixedsys","17"),fill="red")
         canvas.create_text(150,580,anchor=NW,text="Peso",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,630,anchor=NW,text="Eficiencia",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(150,630,anchor=NW,text="Eficiencia",font=("Fixedsys","17"),fill="red")
+        #                                      _____________________________________________________
+        #_____________________________________/Entrys y botones
         self.__entryMarca = Entry(self.__master)
         self.__entryMarca.place(x=300,y=130)
         self.__entryModelo = Entry(self.__master)
@@ -115,21 +124,25 @@ class Ventana_inicio(Frame):
         self.__entryPeso.place(x=300,y=580)
         self.__entryEficiencia = Entry(self.__master)
         self.__entryEficiencia.place(x=300,y=630)
-        self.__btnCrear = Button(self.__master,text="Crear",command=lambda:self.newCar(self.__entryMarca.get(),self.__entryModelo.get(),self.__entryPais.get(),self.__entryTemporada.get(),self.__entryNumBaterias.get(),self.__entryCanPilas.get(),self.__entryEstado.get(),self.__entryConsumo.get(),self.__entrySensores.get(),self.__entryPeso.get(),self.__entryEficiencia.get()))
+        self.__btnCrear = Button(self.__master,fg=colorletra,bg=colorfondo,text="Crear",command=lambda:self.newCar(self.__entryMarca.get(),self.__entryModelo.get(),self.__entryPais.get(),self.__entryTemporada.get(),self.__entryNumBaterias.get(),self.__entryCanPilas.get(),self.__entryEstado.get(),self.__entryConsumo.get(),self.__entrySensores.get(),self.__entryPeso.get(),self.__entryEficiencia.get()))
         self.__btnCrear.place(x=300,y=660)
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
 
         canvas.create_text(600,75,anchor=NW,text="Editar Automovil",font=("Fixedsys","20"),fill="black")
-        canvas.create_text(600,130,anchor=NW,text="Nueva Marca",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,180,anchor=NW,text="Nuevo Modelo",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,230,anchor=NW,text="Nuevo Pais",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,280,anchor=NW,text="Nueva Temporada",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,330,anchor=NW,text="Baterias",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,380,anchor=NW,text="Cantidad de Pilas",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,430,anchor=NW,text="Nuevo Estado",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,480,anchor=NW,text="Consumo",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,530,anchor=NW,text="Sensores",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,580,anchor=NW,text="Nuevo Peso",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,630,anchor=NW,text="Eficiencia",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(600,130,anchor=NW,text="Nueva Marca",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,180,anchor=NW,text="Nuevo Modelo",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,230,anchor=NW,text="Nuevo Pais",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,280,anchor=NW,text="Nueva Temporada",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,330,anchor=NW,text="Baterias",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,380,anchor=NW,text="Cantidad de Pilas",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,430,anchor=NW,text="Nuevo Estado",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,480,anchor=NW,text="Consumo",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,530,anchor=NW,text="Sensores",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,580,anchor=NW,text="Nuevo Peso",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,630,anchor=NW,text="Eficiencia",font=("Fixedsys","17"),fill="red4")
+        #                                      _____________________________________________________
+        #_____________________________________/Entrys y botones        
         self.__carroselect = StringVar(self.__master)
         self.__carroselect.set("Seleccionar Carro")
         self.__select = self.optionMenuCar()
@@ -157,9 +170,9 @@ class Ventana_inicio(Frame):
         self.__entryEditPeso.place(x=850,y=580)
         self.__entryEditEficiencia = Entry(self.__master)
         self.__entryEditEficiencia.place(x=850,y=630)
-        self.__btnEditar = Button(self.__master,text="Editar",command=lambda:self.editCarro(self.__carroselect.get()))
+        self.__btnEditar = Button(self.__master,fg=colorletra,bg=colorfondo,text="Editar",command=lambda:self.editCarro(self.__carroselect.get()))
         self.__btnEditar.place(x=850,y=660)
-        self.__btnGuardar = Button(self.__master,text="Guardar",command=lambda:self.guardaInfoCar(self.__carroselect.get()))
+        self.__btnGuardar = Button(self.__master,fg=colorletra,bg=colorfondo,text="Guardar",command=lambda:self.guardaInfoCar(self.__carroselect.get()))
         self.__btnGuardar.place(x=900,y=660)
     #---------------------------------------------------------------------------------------------------
     #OptionMenu Carros
@@ -200,6 +213,8 @@ class Ventana_inicio(Frame):
     #--------------------------------------------------
     #Crear piloto
     def newPiloto(self,nombre,edad,nacionalidad,temporada,can_competencias,destacadas,fallidas):
+        #                                      _____________________________________________________
+        #_____________________________________/Guarda info        
         self.__entryN.delete(0,END)
         self.__entryE.delete(0,END)
         self.__entryNa.delete(0,END)
@@ -224,6 +239,8 @@ class Ventana_inicio(Frame):
     #---------------------------------------------------
     #Crea los pilotos
     def crear_pilotos(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame        
         for i in self.__master.winfo_children():
             i.destroy()
         Frame.__init__(self,self.__master)
@@ -234,6 +251,8 @@ class Ventana_inicio(Frame):
         self.fondoescuderias=PhotoImage(file="Fondos/fondoescuderias.png")
         canvas.create_image(0,0,image=self.fondoescuderias,anchor=NW)
         canvas.pack()
+        #                                      _____________________________________________________
+        #_____________________________________/Menu         
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
@@ -251,17 +270,21 @@ class Ventana_inicio(Frame):
         self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)
         self.menuvar.add_cascade(label="Tabla de Posiciones",menu=self.tablemenu)
         self.testmenu = Menu(self.menuvar,tearoff=0)
-        self.testmenu.add_command(label="Halo View",command=self.show_testdrive) #Agregar comando
+        self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
-        root.config(menu=self.menuvar)    
+        root.config(menu=self.menuvar)
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
         canvas.create_text(150,75,anchor=NW,text="Crear Piloto",font=("Fixedsys","20","bold"),fill="black")
-        canvas.create_text(150,130,anchor=NW,text="Nombre",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,180,anchor=NW,text="Edad",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,230,anchor=NW,text="Nacionalidad",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,280,anchor=NW,text="Temporada",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,330,anchor=NW,text="Competencias",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,380,anchor=NW,text="Destacadas",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(150,430,anchor=NW,text="Fallidas",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(150,130,anchor=NW,text="Nombre",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(150,180,anchor=NW,text="Edad",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(150,230,anchor=NW,text="Nacionalidad",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(150,280,anchor=NW,text="Temporada",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(150,330,anchor=NW,text="Competencias",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(150,380,anchor=NW,text="Destacadas",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(150,430,anchor=NW,text="Fallidas",font=("Fixedsys","17"),fill="red4")
+        #                                      _____________________________________________________
+        #_____________________________________/Entrys y botones
         self.__entryN=Entry(self.__master)
         self.__entryN.place(x=300,y=130)
         self.__entryE=Entry(self.__master)
@@ -276,7 +299,7 @@ class Ventana_inicio(Frame):
         self.__entryD.place(x=300,y=380)
         self.__entryF=Entry(self.__master)
         self.__entryF.place(x=300,y=430)
-        self.__btnCrearPiloto = Button(self.__master,text="Crear Piloto",command=lambda: self.newPiloto(self.__entryN.get(),self.__entryE.get(),self.__entryNa.get(),
+        self.__btnCrearPiloto = Button(self.__master,fg=colorletra,bg=colorfondo,text="Crear Piloto",command=lambda: self.newPiloto(self.__entryN.get(),self.__entryE.get(),self.__entryNa.get(),
                                                                                                         self.__entryT.get(),self.__entryC.get(),self.__entryD.get(),self.__entryF.get()))
         self.__btnCrearPiloto.place(x=200,y=550)
         canvas.create_text(600,75,anchor=NW,text="Editar Piloto",font=("Fixedsys","20","bold"),fill="black")
@@ -287,10 +310,14 @@ class Ventana_inicio(Frame):
         self.__select = self.actOptionMenu()
         self.__select.config()
         self.__select.place(x=850,y=130)
-        canvas.create_text(600,180,anchor=NW,text="Nuevo Nombre",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,230,anchor=NW,text="Nueva Edad",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,280,anchor=NW,text="Nueva Nacionalidad",font=("Fixedsys","17"),fill="black")
-        canvas.create_text(600,330,anchor=NW,text="Nueva Temporada",font=("Fixedsys","17"),fill="black")
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
+        canvas.create_text(600,180,anchor=NW,text="Nuevo Nombre",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,230,anchor=NW,text="Nueva Edad",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,280,anchor=NW,text="Nueva Nacionalidad",font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(600,330,anchor=NW,text="Nueva Temporada",font=("Fixedsys","17"),fill="red4")
+        #                                      _____________________________________________________
+        #_____________________________________/Entrys y Botones 
         self.__entryEditNombre = Entry(self.__master)
         self.__entryEditNombre.place(x=850, y=180)
         self.__entryEditEdad = Entry(self.__master)
@@ -300,9 +327,9 @@ class Ventana_inicio(Frame):
         self.__entryEditTemporada = Entry(self.__master)
         self.__entryEditTemporada.place(x=850, y=330)
         
-        self.__btnEdit = Button(self.__master,text="Editar",command=lambda: self.editPiloto(self.__pilotosselect.get()))
+        self.__btnEdit = Button(self.__master,fg=colorletra,bg=colorfondo,text="Editar",command=lambda: self.editPiloto(self.__pilotosselect.get()))
         self.__btnEdit.place(x=850,y=380)
-        self.__btnGuardar =Button(self.__master,text="Guardar",command=lambda:self.guardaInfo(self.__pilotosselect.get()))
+        self.__btnGuardar =Button(self.__master,fg=colorletra,bg=colorfondo,text="Guardar",command=lambda:self.guardaInfo(self.__pilotosselect.get()))
         self.__btnGuardar.place(x=900,y=380)
 
     #------------------------------------------------------
@@ -318,6 +345,8 @@ class Ventana_inicio(Frame):
     #-----------------------------------------------------
     #Editar Carro
     def editCarro(self,carro):
+        #                                      _____________________________________________________
+        #_____________________________________/Guarda Info Carro 
         self.__entryEditMarca.delete(0,END)
         self.__entryEditModelo.delete(0,END)
         self.__entryEditPais.delete(0,END)
@@ -364,6 +393,8 @@ class Ventana_inicio(Frame):
     #-----------------------------------------------------------------
     #GuardaEditCarros
     def guardaInfoCar(self,carro):
+        #                                      _____________________________________________________
+        #_____________________________________/Guarda info carro
         for i in self.__laEscuderia.getAutomoviles():
             if i.getMarca() == carro:
                 carroSelect = i
@@ -402,6 +433,8 @@ class Ventana_inicio(Frame):
     #-------------------------------------------------------
     #GuardaEdit
     def guardaInfo(self,piloto):
+        #                                      _____________________________________________________
+        #_____________________________________/Guarda Info piloto 
         for i in self.__laEscuderia.getPilotos():
             if i.getNombrePiloto() == piloto:
                 pilotoSelect = i
@@ -427,6 +460,8 @@ class Ventana_inicio(Frame):
     #-------------------------------------------------
     #Enseña la tabla de posiciones
     def position_table(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame 
         for i in self.__master.winfo_children():
             i.destroy()
         Frame.__init__(self,self.__master)
@@ -435,10 +470,10 @@ class Ventana_inicio(Frame):
         self.__master.iconbitmap("iconos/pilot.ico")
         canvas=Canvas(self.__master,bg="white",width=1280,height=800)
         canvas.pack()
-        self.imgc1=PhotoImage(file="Fotos/antonio.png")
         self.fondopilotos=PhotoImage(file="Fondos/fpilotos.png")
         canvas.create_image(0,0,image=self.fondopilotos,anchor=NW)
-        canvas.create_image(50,52,image=self.imgc1,anchor=NW)
+                                            #  _____________________________________________________
+        #_____________________________________/     Textos
         canvas.create_text(25,50,anchor=NW,text="1",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(25,175,anchor=NW,text="2",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(25,300,anchor=NW,text="3",font=("Fixedsys","20","bold"),fill="black")
@@ -449,6 +484,8 @@ class Ventana_inicio(Frame):
         canvas.create_text(525,300,anchor=NW,text="8",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(525,425,anchor=NW,text="9",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(510,550,anchor=NW,text="10",font=("Fixedsys","20","bold"),fill="black")
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
@@ -466,9 +503,12 @@ class Ventana_inicio(Frame):
         self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)
         self.menuvar.add_cascade(label="Tabla de Posiciones",menu=self.tablemenu)
         self.testmenu = Menu(self.menuvar,tearoff=0)
-        self.testmenu.add_command(label="Halo View")
+        self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
+
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
         canvas.create_text(150,15,anchor=NW,text="Piloto",font=("Fixedsys","14"),fill="red")
         canvas.create_text(250,15,anchor=NW,text="Competencias",font=("Fixedsys","14"),fill="red")
         canvas.create_text(425,15,anchor=NW,text="REP",font=("Fixedsys","14"),fill="red")
@@ -481,7 +521,6 @@ class Ventana_inicio(Frame):
         drivertemporada1 = canvas.create_text(150,110,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias1 = canvas.create_text(325,50,anchor=NW,text="49",font=("Fixedsys","10"),fill="black")
         driverrgp1 = canvas.create_text(425,50,anchor=NW,text="61,54",font=("Fixedsys","10"),fill="black")
-        #driverrep1 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
         
         #PILOTO 2
         self.__photo2 = PhotoImage(file="Fotos/valtteri.png")
@@ -492,7 +531,6 @@ class Ventana_inicio(Frame):
         drivertemporada2 = canvas.create_text(150,235,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias2 = canvas.create_text(325,175,anchor=NW,text="68",font=("Fixedsys","10"),fill="black")
         driverrgp2 = canvas.create_text(425,175,anchor=NW,text="60,00",font=("Fixedsys","10"),fill="black")
-        #driverrep2 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
         
         #PILOTO3
         self.__photo3 = PhotoImage(file="Fotos/sergio.png")
@@ -503,7 +541,6 @@ class Ventana_inicio(Frame):
         drivertemporada3 = canvas.create_text(150,360,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias3 = canvas.create_text(325,300,anchor=NW,text="57",font=("Fixedsys","10"),fill="black")
         driverrgp3 = canvas.create_text(425,300,anchor=NW,text="60,47",font=("Fixedsys","10"),fill="black")
-        #driverrep3 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
 
         #PILOTO 4
         self.__photo4 = PhotoImage(file="Fotos/romain.png")
@@ -514,7 +551,6 @@ class Ventana_inicio(Frame):
         drivertemporada4 = canvas.create_text(150,485,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias4 = canvas.create_text(325,425,anchor=NW,text="70",font=("Fixedsys","10"),fill="black")
         driverrgp4 = canvas.create_text(425,425,anchor=NW,text="58,49",font=("Fixedsys","10"),fill="black")
-        #driverrep4 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
 
         #PILOTO 5
         self.__photo5 = PhotoImage(file="Fotos/nico.png")
@@ -525,7 +561,6 @@ class Ventana_inicio(Frame):
         drivertemporada5 = canvas.create_text(150,610,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias5 = canvas.create_text(325,550,anchor=NW,text="64",font=("Fixedsys","10"),fill="black")
         driverrgp5 = canvas.create_text(425,550,anchor=NW,text="55,56",font=("Fixedsys","10"),fill="black")
-        #driverrep5 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
 
         #PILOTO 6
         self.__photo6 = PhotoImage(file="Fotos/carlos.png")
@@ -536,7 +571,6 @@ class Ventana_inicio(Frame):
         drivertemporada6 = canvas.create_text(650,110,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias6 = canvas.create_text(875,50,anchor=NW,text="49",font=("Fixedsys","10"),fill="white")
         driverrgp6 = canvas.create_text(1000,50,anchor=NW,text="55.26",font=("Fixedsys","10"),fill="white")
-        #driverrep6 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
         
         #PILOTO 7
         self.__photo7 = PhotoImage(file="Fotos/antonio.png")
@@ -547,7 +581,6 @@ class Ventana_inicio(Frame):
         drivertemporada7 = canvas.create_text(650,235,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias7 = canvas.create_text(875,175,anchor=NW,text="59",font=("Fixedsys","10"),fill="black")
         driverrgp7 = canvas.create_text(1000,175,anchor=NW,text="48,94",font=("Fixedsys","10"),fill="black")
-        #driverrep7 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
 
         #PILOTO 8
         self.__photo8 = PhotoImage(file="Fotos/daniil.png")
@@ -558,7 +591,6 @@ class Ventana_inicio(Frame):
         drivertemporada8 = canvas.create_text(650,360,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias8 = canvas.create_text(875,300,anchor=NW,text="55",font=("Fixedsys","10"),fill="black")
         driverrgp8 = canvas.create_text(1000,300,anchor=NW,text="40,43",font=("Fixedsys","10"),fill="black")
-        #driverrep8 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
 
         #PILOTO 9
         self.__photo9 = PhotoImage(file="Fotos/george.png")
@@ -569,7 +601,6 @@ class Ventana_inicio(Frame):
         drivertemporada9 = canvas.create_text(650,485,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias9 = canvas.create_text(875,425,anchor=NW,text="40",font=("Fixedsys","10"),fill="black")
         driverrgp9 = canvas.create_text(1000,425,anchor=NW,text="30,56",font=("Fixedsys","10"),fill="black")
-        #driverrep9 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
 
         #PILOTO 10
         self.__photo10 = PhotoImage(file="Fotos/pierre.png")
@@ -580,12 +611,12 @@ class Ventana_inicio(Frame):
         drivertemporada10 = canvas.create_text(650,610,anchor=NW,text="2019",font=("Fixedsys","10"),fill="black")
         drivercompetencias10 = canvas.create_text(875,550,anchor=NW,text="45",font=("Fixedsys","10"),fill="black")
         driverrgp10 = canvas.create_text(1000,550,anchor=NW,text="25,00",font=("Fixedsys","10"),fill="black")
-        #driverrep10 = canvas.create_text(200,50,anchor=NW,text=round(rep,2),font=("Fixedsys","10"),fill="black")
     #---------------------------------------------------------------------------------------------------------------------------------------------------------------------------
     #
     #Enseñar la información de ayuda
     def show_about(self):
-        #Iteracion para borrar el contenido de la pantalla e inicializar el frame
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame 
         for i in self.__master.winfo_children():
             i.destroy()
         Frame.__init__(self,self.__master,background="black")
@@ -596,6 +627,8 @@ class Ventana_inicio(Frame):
         canvas.pack()
         self.fondo=PhotoImage(file="Fondos/Fondo.gif")
         canvas.create_image(0,0,image=self.fondo,anchor=NW)
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
         canvas.create_text(50,50,anchor=NW,text="Instituto Tecnologico de Costa Rica",font=("Fixedsys","14","bold"),fill=color1)
         canvas.create_text(50,100,anchor=NW,text="Kenneth Quirós Torres\n2019243813",font=("Fixedsys","14","bold"),fill=color1)
         self.fotoK=PhotoImage(file="Fotos/Kenneth.gif")
@@ -609,6 +642,8 @@ class Ventana_inicio(Frame):
         canvas.create_text(50,350,anchor=NW,text="Alejandro Vargas Chaves",font=("Fixedsys","14","bold"),fill=color1)
         canvas.create_text(50,400,anchor=NW,text="Costa Rica",font=("Fixedsys","14","bold"),fill=color1)
         canvas.create_text(50,450,anchor=NW,text="Version 1.1",font=("Fixedsys","14","bold"),fill=color1)
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
@@ -626,7 +661,7 @@ class Ventana_inicio(Frame):
         self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)
         self.menuvar.add_cascade(label="Tabla de Posiciones",menu=self.tablemenu)
         self.testmenu = Menu(self.menuvar,tearoff=0)
-        self.testmenu.add_command(label="Halo View",command=self.testmenu)
+        self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
         #---------------------------------------------------
@@ -652,8 +687,12 @@ class Ventana_inicio(Frame):
         self.fondo=PhotoImage(file="Fondos/fprincipal.png")
         self.__master.iconbitmap("iconos/principal.ico")
         canvas.create_image(0,0,image=self.fondo,anchor=NW)
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
         canvas.create_text(400,75,anchor=NW,text="Indice Ganador de Escudería",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(500,30,anchor=NW,text="Temporada: 2019",font=("Fixedsys","20","bold"),fill="grey92")
+                                                    #  _____________________________________________________
+        #_____________________________________/Menus
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
@@ -676,6 +715,8 @@ class Ventana_inicio(Frame):
         root.config(menu=self.menuvar)
         self.__logoEscuderia = PhotoImage(file=logo)
         canvas.create_image(1050,325,image=self.__logoEscuderia)
+        #                                      _____________________________________________________
+        #_____________________________________/Iteraciones para datos
         sumaD=0
         for i in self.__laEscuderia.getPilotos():
             destacadas = i.getDestacadas()
@@ -690,38 +731,31 @@ class Ventana_inicio(Frame):
             sumaF = sumaF + int(fallidas)
         self.__ige = round(sumaD/sumaC,1)
         canvas.create_rectangle(550, 150, 700, 200)
-        canvas.create_text(610,165,anchor=NW,text=self.__ige,font=("Fixedsys","17"),fill="black")
+        canvas.create_text(610,165,anchor=NW,text=self.__ige,font=("Fixedsys","17"),fill="red4")
         estado=""
         for l in self.__laEscuderia.getAutomoviles():
             estado = l.getEstado()
         self.__autoestado = estado
-        canvas.create_text(450,250,anchor=NW,text="Estado del Automovil",font=("Fixedsys","20"),fill=color1)
-        canvas.create_text(580,300,anchor=NW,text=self.__autoestado,font=("Fixedsys","17"),fill="black")
-        canvas.create_text(450,375,anchor=NW,text="Nombre de la Escuderia",font=("Fixedsys","20"),fill=color1)
-        canvas.create_text(580,425,anchor=NW,text=Name,font=("system","17"),fill="black")
-        canvas.create_text(545,475,anchor=NW,text="Ubicación",font=("Fixedsys","20"),fill=color1)
-        canvas.create_text(565,525,anchor=NW,text=Location,font=("system","17"),fill=color1)
-        canvas.create_text(75,250,anchor=NW,text="Patrocinadores",font=("Fixedsys","17"),fill=color1)
-        canvas.create_text(225,250,anchor=NW,text=Sponsorstring,font=("system","17"),fill=color1)
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
+        canvas.create_text(450,250,anchor=NW,text="Estado del Automovil",font=("Fixedsys","20"),fill="black")
+        canvas.create_text(579,305,anchor=NW,text=self.__autoestado,font=("Fixedsys","17"),fill="red4")
+        canvas.create_text(450,375,anchor=NW,text="Nombre de la Escuderia",font=("Fixedsys","20"),fill="black")
+        canvas.create_text(580,425,anchor=NW,text=Name,font=("system","17"),fill="red4")
+        canvas.create_text(545,475,anchor=NW,text="Ubicación",font=("Fixedsys","20"),fill="black")
+        canvas.create_text(565,525,anchor=NW,text=Location,font=("system","17"),fill="red4")
+        canvas.create_text(75,125,anchor=NW,text="Patrocinadores",font=("Fixedsys","17"),fill="black")
+        canvas.create_text(225,125,anchor=NW,text=Sponsorstring,font=("system","17"),fill="red4")
         canvas.create_rectangle(530, 290, 725, 345)
-        self.__carroselect = StringVar(self.__master)
-        self.__carroselect.set("Seleccionar Carro")
-        self.__select = self.optionMenuInicio()
-        self.__select.config()
-        self.__select.place(x=75,y=75)
+        self.__foto= PhotoImage(file="Automoviles/joselito.gif")
+        canvas.create_image(550,600,image=self.__foto,anchor=NW)
+
         return
-    #------------------------------------------------------------------------
-    #Option Menu pantalla
-    def optionMenuInicio(self):
-        lista=[]
-        for i in self.__laEscuderia.getAutomoviles():
-            marca = i.getMarca()
-            lista.append(marca)
-            menu = OptionMenu(self.__master,self.__carroselect, *lista)
-        return menu
     #-------------------------------------------------------------------
     #Editar Escuderia
     def editarEscuderia(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame 
         for i in self.__master.winfo_children():
             i.destroy()
             
@@ -736,7 +770,8 @@ class Ventana_inicio(Frame):
         Icon = Esc.getLogo()
         self.informacion= PhotoImage(file="Fondos/feditescuderia.png")
         canvas.create_image(0,0,image=self.informacion,anchor=NW)
-        self.menuvar = Menu(self.__master)
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
@@ -757,11 +792,15 @@ class Ventana_inicio(Frame):
         self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
         canvas.create_text(100,100,anchor=NW,text="Editar Escuderia",font=("Fixedsys","20"),fill="black")
         canvas.create_text(100,180,anchor=NW,text="Ubicación Geografica",font=("Fixedsys","17"),fill="black")
         canvas.create_text(100,230,anchor=NW,text="Añadir Patrocinador",font=("Fixedsys","17"),fill="black")
         canvas.create_text(100,280,anchor=NW,text="Eliminar Patrocinador",font=("Fixedsys","17"),fill="black")
         canvas.create_text(100,330,anchor=NW,text="Nuevo Logo",font=("Fixedsys","17"),fill="black")
+        #                                      _____________________________________________________
+        #_____________________________________/Entrys y botones 
         self.__entryUbicacion = Entry(self.__master)
         self.__entryUbicacion.place(x=350,y=180)
         self.__entryPatrocinador = Entry(self.__master)
@@ -788,6 +827,8 @@ class Ventana_inicio(Frame):
     #------------------------------------------------------------------
     #Boorar patrocinadores
     def borraPatrocinadores(self,patrocinador):
+        #                                      _____________________________________________________
+        #_____________________________________/Borra Patrocinadores
         Esc = self.__laEscuderia
         Esc.removePatrocinadores(patrocinador)
         logo = self.__laEscuderia.getLogo()
@@ -801,6 +842,8 @@ class Ventana_inicio(Frame):
     #-------------------------------------------------------------------
     #Editar Logo
     def logoEdit(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Guarda el nuevo logo
         self.__rutaImagen = askopenfilename()
         self.__imagen = os.path.abspath(self.__rutaImagen)
         self.__logo = PhotoImage(file=self.__imagen)
@@ -819,6 +862,8 @@ class Ventana_inicio(Frame):
     #-------------------------------------------------------------------
     #Guarda Edit
     def guardaEdit(self,ubicacion,patrocinador):
+        #                                      _____________________________________________________
+        #_____________________________________/Guarda Edicion del piloto
         self.__entryUbicacion.delete(0,END)
         self.__entryPatrocinador.delete(0,END)
         Esc = self.__laEscuderia
@@ -835,6 +880,8 @@ class Ventana_inicio(Frame):
     #-------------------------------------------------------------------
     #Funcion para crear ventana donde se mostrara el Test Drive
     def show_testdrive(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame 
         for i in self.__master.winfo_children():
             i.destroy()
             
@@ -847,7 +894,8 @@ class Ventana_inicio(Frame):
         self.__master.iconbitmap("iconos/engranaje.ico")
         self.informacion= PhotoImage(file="interior.gif")
         canvas.create_image(0,0,image=self.informacion,anchor=NW)
-        self.menuvar = Menu(self.__master)
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
@@ -871,15 +919,12 @@ class Ventana_inicio(Frame):
         colorfondo="gray4"
         colorletra="floral white"
 
-
-        #           _____________________________________
-        #__________/Se titulo de los Cuadros de texto
-
         #           _____________________________________
         #__________/Creando el cliente para NodeMCU
         myCar = NodeMCU()
         myCar.start()
-        
+        #                                      _____________________________________________________
+        #_____________________________________/Botones
         Btn_gizquierda = Button(self.__master,text="Girar Izquierda",fg=colorletra,bg=colorfondo, font=('Agency FB',12),height=1,width=20,command=lambda:self.send("dir:-1;"))
         Btn_gizquierda.place(x=150,y=320)
 
@@ -921,6 +966,8 @@ class Ventana_inicio(Frame):
         
     #----------------------------------------------------------------------------------------------------------------------
     #Envia los comandos al Node
+        #                                      _____________________________________________________
+        #_____________________________________/Comandos del Node
     def send (self,event):
         myCar = NodeMCU()
         myCar.start()
@@ -975,8 +1022,11 @@ class Ventana_inicio(Frame):
         else:
             circulo=1
             self.send("cr:-1;")
+    #------------------------------------------------------------------------------------------------------
     #Funcion para crear menu que mostrara los carros 
     def show_automoviles(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame 
         for i in self.__master.winfo_children():
             i.destroy()
             
@@ -986,8 +1036,10 @@ class Ventana_inicio(Frame):
         self.__master.title("Automóviles")
         self.__master.geometry("1280x800")
         self.__master.iconbitmap("iconos/racecar.ico")
-        self.fondoam= PhotoImage(file="Fondos/fautos2.png")
+        self.fondoam= PhotoImage(file="Fondos/fpilotos.png")
         canvas.create_image(0,0,image=self.fondoam,anchor=NW)
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
         canvas.create_text(25,50,anchor=NW,text="1",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(25,175,anchor=NW,text="2",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(25,300,anchor=NW,text="3",font=("Fixedsys","20","bold"),fill="black")
@@ -999,6 +1051,8 @@ class Ventana_inicio(Frame):
         canvas.create_text(525,425,anchor=NW,text="9",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(510,550,anchor=NW,text="10",font=("Fixedsys","20","bold"),fill="black")
         self.menuvar = Menu(self.__master)
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
@@ -1008,22 +1062,24 @@ class Ventana_inicio(Frame):
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about)
-        self.aboutmenu.add_command(label="Como Útilizar",command=self.show_helpwindow)#Agregar comando
+        self.aboutmenu.add_command(label="Como Útilizar",command=self.show_helpwindow)
         self.menuvar.add_cascade(label="Ayuda",menu=self.aboutmenu)
         self.tablemenu = Menu(self.menuvar,tearoff=0)
         self.tablemenu.add_command(label="Pilotos",command=self.position_table)
         self.tablemenu.add_command(label="Automoviles",command=self.show_automoviles)
         self.menuvar.add_cascade(label="Tabla de Posiciones",menu=self.tablemenu)
         self.testmenu = Menu(self.menuvar,tearoff=0)
-        self.testmenu.add_command(label="Halo View")
+        self.testmenu.add_command(label="Halo View",command=self.show_testdrive)
         self.menuvar.add_cascade(label="Test Drive",menu=self.testmenu)
         root.config(menu=self.menuvar)
-        canvas.create_text(150,15,anchor=NW,text="Automoviles",font=("Fixedsys","14"),fill="black")
-        canvas.create_text(350,15,anchor=NW,text="Eficiencia",font=("Fixedsys","14"),fill="black")
+                                            #  _____________________________________________________
+        #_____________________________________/Textos
+        canvas.create_text(150,15,anchor=NW,text="Automoviles",font=("Fixedsys","14"),fill="red4")
+        canvas.create_text(350,15,anchor=NW,text="Eficiencia",font=("Fixedsys","14"),fill="red4")
         
         #Auto1
         self.__photo1 = PhotoImage(file="Automoviles/joselito.gif")
-        canvas.create_image(50,52,image=self.__photo1,anchor=NW)
+        canvas.create_image(175,52,image=self.__photo1,anchor=NW)
         driverrgp1 = canvas.create_text(425,50,anchor=NW,text="60",font=("Fixedsys","10"),fill="black")
 
         
@@ -1071,9 +1127,11 @@ class Ventana_inicio(Frame):
         self.__photo10 = PhotoImage(file="Automoviles/williams.png")
         canvas.create_image(552,556,image=self.__photo10,anchor=NW)
         driverrgp10 = canvas.create_text(1000,550,anchor=NW,text="70",font=("Fixedsys","10"),fill="black")
-        
-#Funcion para crear ventana que despliega la información de como utilizar la interfaz
+    #-----------------------------------------------------------------------------------------------------------------------    
+    #Funcion para crear ventana que despliega la información de como utilizar la interfaz
     def show_helpwindow(self):
+        #                                      _____________________________________________________
+        #_____________________________________/Crea Frame 
         for i in self.__master.winfo_children():
             i.destroy()
         
@@ -1081,6 +1139,8 @@ class Ventana_inicio(Frame):
         canvas.pack()
         self.fhelp= PhotoImage(file="Fondos/fayuda.png")
         canvas.create_image(0,0,image=self.fhelp,anchor=NW)
+                                            #  _____________________________________________________
+        #_____________________________________/Menus
         canvas.create_text(100,150,anchor=NW,text="En la parte de arriba encontrará una barra con diferentes menus de los cuales"
                            " dependiendo al lugar que quiera\ningresar usted debe cliquear, ejemplo, en el apartado de 'opciones'"
                            "estarán cuatro botones:\n"
@@ -1100,8 +1160,8 @@ class Ventana_inicio(Frame):
         self.__master.title("¿Cómo se utiliza?")
         self.__master.geometry("1280x800")
         self.__master.iconbitmap("iconos/question.ico")
-      
-        self.menuvar = Menu(self.__master)
+        #                                      _____________________________________________________
+        #_____________________________________/Menu
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
         self.optionsmenu.add_command(label="Crear Pilotos",command=self.crear_pilotos)
