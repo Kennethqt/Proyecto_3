@@ -58,7 +58,7 @@ class Ventana_inicio(Frame):
         self.__master.title("Automóviles")
         self.__master.geometry("1280x800")
         self.__master.iconbitmap("iconos/racecar.ico")
-        self.fondoam= PhotoImage(file="Fondos/fautos2.png")
+        self.fondoam= PhotoImage(file="Fondos/fautos1.png")
         canvas.create_image(0,0,image=self.fondoam,anchor=NW)
         self.menuvar = Menu(self.__master)
         self.menuvar = Menu(self.__master)
@@ -67,7 +67,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about)
@@ -240,7 +240,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about) 
@@ -435,8 +435,10 @@ class Ventana_inicio(Frame):
         self.__master.iconbitmap("iconos/pilot.ico")
         canvas=Canvas(self.__master,bg="white",width=1280,height=800)
         canvas.pack()
+        self.imgc1=PhotoImage(file="Fotos/antonio.png")
         self.fondopilotos=PhotoImage(file="Fondos/fpilotos.png")
         canvas.create_image(0,0,image=self.fondopilotos,anchor=NW)
+        canvas.create_image(50,52,image=self.imgc1,anchor=NW)
         canvas.create_text(25,50,anchor=NW,text="1",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(25,175,anchor=NW,text="2",font=("Fixedsys","20","bold"),fill="black")
         canvas.create_text(25,300,anchor=NW,text="3",font=("Fixedsys","20","bold"),fill="black")
@@ -453,7 +455,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about)
@@ -592,7 +594,7 @@ class Ventana_inicio(Frame):
         self.__master.iconbitmap("iconos/credits.ico")
         canvas=Canvas(self.__master,bg="white",width=1280,height=800)
         canvas.pack()
-        self.fondo=PhotoImage(file="Fotos/Fondo.gif")
+        self.fondo=PhotoImage(file="Fondos/Fondo.gif")
         canvas.create_image(0,0,image=self.fondo,anchor=NW)
         canvas.create_text(50,50,anchor=NW,text="Instituto Tecnologico de Costa Rica",font=("Fixedsys","14","bold"),fill=color1)
         canvas.create_text(50,100,anchor=NW,text="Kenneth Quirós Torres\n2019243813",font=("Fixedsys","14","bold"),fill=color1)
@@ -613,7 +615,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")#Agregar comando
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)#Agregar comando
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about)
@@ -658,7 +660,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about)
@@ -732,7 +734,7 @@ class Ventana_inicio(Frame):
         self.__master.iconbitmap("iconos/engranaje.ico")
         Esc = self.__laEscuderia
         Icon = Esc.getLogo()
-        self.informacion= PhotoImage(file="Fondos/fprincipal.png")
+        self.informacion= PhotoImage(file="Fondos/feditescuderia.png")
         canvas.create_image(0,0,image=self.informacion,anchor=NW)
         self.menuvar = Menu(self.__master)
         self.menuvar = Menu(self.__master)
@@ -741,7 +743,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about) 
@@ -852,7 +854,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about) 
@@ -1002,7 +1004,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about)
@@ -1077,16 +1079,28 @@ class Ventana_inicio(Frame):
         
         canvas=Canvas(self.__master,bg="white",width=1280,height=800)
         canvas.pack()
-        canvas.create_text(200,150,anchor=NW,text="En la parte de arriba encontrará una barra con diferentes\nmenus de las cuales"
-                           " dependiendo al lugar que quiera ingresar\nusted debe clickar, ejemplo, en el apartado de 'opciones'\n"
-                           "estarán tres botones, el primero 'Escuderías' lo enviará a\nuna ventana en el que usted puede editar y crear pilotos.\n"
-                           "En la opción de 'Inicio' lo retornará almenu principal y el\nde 'Salir' cerrará la interfaz.\n\nEn la opción de 'Tabla de posiciones'",font=("Fixedsys","20","bold"),fill="black")
+        self.fhelp= PhotoImage(file="Fondos/fayuda.png")
+        canvas.create_image(0,0,image=self.fhelp,anchor=NW)
+        canvas.create_text(100,150,anchor=NW,text="En la parte de arriba encontrará una barra con diferentes menus de los cuales"
+                           " dependiendo al lugar que quiera\ningresar usted debe cliquear, ejemplo, en el apartado de 'opciones'"
+                           "estarán cuatro botones:\n"
+                           "-Crear pilotos= Aquí podrá crear nuevos corredores o editando información de ellos como la edad,nombre y más.\n"
+                           "-Crear Carros= Al igual que en la opción de pilotos usted puede crear nuevos vehiculos escogiendo el modelo o\n bien editar los autos disponibles.\n"
+                           "-Inicio= Al darle a este botón nos retornara a la ventana principal.\n"
+                           "-Salir= Esta opción hará que el programa se cierre.\n\n"
+                           "En el menú de 'Tabla de posiciones' nos encontraremos con las siguientes opciones:\n"
+                           "-Pilotos= Nos mostrará los corredores mas competitivos en un top 10 dependiendo de la cantidad de temporadas\n"
+                           " ganadas.\n"
+                           "-Automóviles= En esta ventana mostrará los autos acomodándolos del más eficiente al mas ineficiente del 1 al 10.\n\n"
+                           "Y por último en el menú de 'Test Drive' aparecerá unicaménte la opción:\n"
+                           "-Halo View= En ella saldrá una simulación del interior del coche y mostrará por medio de los sensores información,\n que le indicará"
+                           " si el carro esta en condiciones para correr o si no lo está."
+                           ,font=("Fixedsys","15"),fill="black")
         Frame.__init__(self,self.__master,background="black")
         self.__master.title("¿Cómo se utiliza?")
         self.__master.geometry("1280x800")
         self.__master.iconbitmap("iconos/question.ico")
-        
-            
+      
         self.menuvar = Menu(self.__master)
         self.menuvar = Menu(self.__master)
         self.optionsmenu = Menu(self.menuvar,tearoff=0)
@@ -1094,7 +1108,7 @@ class Ventana_inicio(Frame):
         self.optionsmenu.add_command(label="Crear Carros",command=self.crear_carros)
         self.optionsmenu.add_command(label="Editar Escuderia",command=self.editarEscuderia)
         self.optionsmenu.add_command(label="Inicio",command=self.inicio)
-        self.optionsmenu.add_command(label="Salir")
+        self.optionsmenu.add_command(label="Salir",command=root.destroy)
         self.menuvar.add_cascade(label="Opciones",menu=self.optionsmenu)
         self.aboutmenu = Menu(self.menuvar,tearoff=0)
         self.aboutmenu.add_command(label="Créditos", command = self.show_about) #Agregar comando
